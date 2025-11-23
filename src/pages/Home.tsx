@@ -1,32 +1,38 @@
+import { Link, useNavigate } from 'react-router-dom';
 import ServiceCard from '../components/ServiceCard';
 
 const Home = () => {
   const whatsappLink = "https://wa.me/8801763636997";
+  const navigate = useNavigate();
 
   const keyServices = [
     {
       title: "Web Development",
       description: "Custom websites tailored to your business needs with modern technologies and responsive design.",
       icon: "🌐",
-      features: ["Custom Websites", "E-commerce Solutions", "SEO Optimization", "Responsive Design"]
+      features: ["Custom Websites", "E-commerce Solutions", "SEO Optimization", "Responsive Design"],
+      tab: "web"
     },
     {
       title: "AI Automation",
       description: "Streamline your business processes with intelligent automation workflows and AI-powered solutions.",
       icon: "🤖",
-      features: ["Workflow Automation", "AI Integration", "Process Optimization", "Custom Solutions"]
+      features: ["Workflow Automation", "AI Integration", "Process Optimization", "Custom Solutions"],
+      tab: "automation"
     },
     {
       title: "Social Media Management",
       description: "Comprehensive social media strategies to boost your online presence and engage your audience.",
       icon: "📱",
-      features: ["Content Creation", "Platform Management", "Analytics & Reporting", "Community Engagement"]
+      features: ["Content Creation", "Platform Management", "Analytics & Reporting", "Community Engagement"],
+      tab: "marketing"
     },
     {
       title: "Digital Marketing",
       description: "Data-driven marketing strategies to grow your brand and reach your target audience effectively.",
       icon: "📈",
-      features: ["SEO & SEM", "Content Marketing", "Email Campaigns", "Performance Analytics"]
+      features: ["SEO & SEM", "Content Marketing", "Email Campaigns", "Performance Analytics"],
+      tab: "marketing"
     }
   ];
 
@@ -138,14 +144,14 @@ const Home = () => {
                 description={service.description}
                 icon={service.icon}
                 features={service.features}
-                onOrder={() => window.open(whatsappLink, '_blank')}
+                onOrder={() => navigate(`/services?tab=${service.tab}`)}
               />
             ))}
           </div>
           <div className="services-cta">
-            <a href="/services" className="secondary-button">
+            <Link to="/services" className="secondary-button">
               View All Services
-            </a>
+            </Link>
           </div>
         </div>
       </section>

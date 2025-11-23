@@ -1,10 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import ServiceCard from '../components/ServiceCard';
 import WorkflowCard from '../components/WorkflowCard';
 
 const Services = () => {
   const whatsappLink = "https://wa.me/8801763636997";
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState<'web' | 'automation' | 'marketing'>('web');
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const tab = params.get('tab');
+    if (tab === 'web' || tab === 'automation' || tab === 'marketing') {
+      setActiveTab(tab);
+    }
+    window.scrollTo(0, 0);
+  }, [location]);
 
   const webDevServices = [
     {
